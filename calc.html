@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            text-align: center;
+            padding: 15px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .fundo{
+            background-image: linear-gradient(45deg, black, crimson);
+            color: aliceblue;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .calculadora{
+            text-align: center;
+            position: absolute;
+            background-color:rgba(0, 0, 0, 0.8);/*COR DA CALCULADORA*/
+            top: 10%; /*PARA CENTRALIZAR A CALCULADORA*/
+            left: 50%; /*PARA CENTRALIZAR A CALCULADORA*/
+            transform: translate(-50%, 50%); /*PARA CENTRALIZAR A CALCULADORA*/
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .botao{
+            margin: 3px;/*ESPAÇAMENTO ENTRE OS BOTÕES*/
+            height: 50px;
+            width: 50px;
+            font-size: 30px;
+            cursor: pointer;/* FAZ COM QUE O CURSOR DO MOUSE VIRE UMA MÃO AO FICAR EM CIMA DO BOTAO*/
+            background-color: rgb(31, 31, 31);
+            border: none;
+            color: #fff;
+
+        }
+        .botao:hover{
+            background-color: black;
+        }
+        #resultado{/*CAIXA DE RESULTADO*/
+            width: 210px;
+            background-color: #fff;
+            height: 30px;
+            margin: 5px;
+            font-size: 25px;
+            color: black;
+            text-align: right;/*DEIXA O RESULTADO ALINHADO Á DIREITA DA CAIXA*/
+            padding: 5px;    
+        }
+        footer{
+            background-color: black;
+            text-align: center;
+            color: rgb(91, 89, 89);
+            padding: 10px;
+            display: flex;
+            gap: 40%;
+        }
+        .image{
+            width: 70px;
+            padding-left: 15px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="fundo">
+        <h1>
+            dev/Edu
+        </h1>
+    <div class="calculadora">
+        <h2>calculadora</h2>
+        <p id="resultado"></p>
+        <table>
+            <tr>
+                <td><button class="botao" onclick="clean()">C</button></td> <!--A OPÇÃO CLEAN FAZ APAGAR TODOS OS NÚMEROS DA CAIXA -->
+                <td><button class="botao" onclick="back()"> < </button></td><!--OPÇÃO DE APAGAR O ULTIMO NÚMERO DIGITADO "BACK"-->
+                <td><button class="botao" onclick="insert('/')">/</button></td>
+                <td><button class="botao" onclick="insert('*')">X</button></td>
+            </tr>
+            <tr>
+                <td><button class="botao" onclick="insert('7')">7</button></td>
+                <td><button class="botao" onclick="insert('8')">8</button></td>
+                <td><button class="botao" onclick="insert('9')">9</button></td>
+                <td><button class="botao" onclick="insert('-')">-</button></td>
+            </tr>
+            <tr>
+                <td><button class="botao" onclick="insert('4')">4</button></td>
+                <td><button class="botao" onclick="insert('5')">5</button></td>
+                <td><button class="botao" onclick="insert('6')">6</button></td>
+                <td><button class="botao" onclick="insert('+')">+</button></td>
+            </tr>
+            <tr>
+                <td><button class="botao" onclick="insert('1')">1</button></td>
+                <td><button class="botao" onclick="insert('2')">2</button></td>
+                <td><button class="botao" onclick="insert('3')">3</button></td>
+                <td rowspan="2"><button class="botao" onclick="calcular()" style="height: 107px;  color: gold; ">=</button></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button class="botao" onclick="insert('0')" style="width: 106px;">0</button></td>
+                <td><button class="botao" onclick="insert('.')">.</button> </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<footer>
+    <img src="imagens/html,css,js.png" alt="" class="image" >
+    <p>&copy; Eduardo_Guitslaff</p>
+</footer>
+<script>
+    function insert(num){
+        var numero = document.getElementById('resultado').innerHTML; //faz aparecer os números na caixa de resultado
+        document.getElementById('resultado').innerHTML = numero + num // faz com ue a calculadora digite mais de um número
+    
+    }
+    function clean(){
+      document.getElementById('resultado').innerHTML = ""; //ESTÁ OPÇÃO FAZ COM QUE O CLEAN LIMPE A AIXA POR ISSO DEIXAMOS OS PARÂMETROS "ASPAS", VAZIO
+    }
+    function back(){
+        var resultado = document.getElementById('resultado').innerHTML;
+        document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1) // FAZ COM QUE APAGUA O ULTIMO NUMERO DIGITADO POR ISSO -1
+    }
+    function calcular(){
+        var resultado = document.getElementById('resultado').innerHTML;
+        if(resultado){
+            document.getElementById('resultado').innerHTML = eval(resultado);//COM O SIMPLES COMANDO "EVAL" CONSEGUIMOS VALIDA AS OPERAÇÕES DE *, /,+, -, =
+        }else{
+            document.getElementById('resultado').innerHTML = ""
+        }
+    }
+</script>
+</body>
+</html>
